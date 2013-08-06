@@ -1,4 +1,4 @@
-define('addBook/view', ['jquery', 'backbone', 'underscore'], function($, Backbone, underscore) {
+define('addBook/view', ['jquery', 'backbone', 'underscore'], function($, Backbone, _) {
   var AddBookView;
   return AddBookView = Backbone.View.extend({
     el: '#addBook',
