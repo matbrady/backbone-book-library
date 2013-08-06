@@ -13,4 +13,6 @@ define('library/collection', [
 		
 	});
 
+	return LibraryCollection;
+
 });

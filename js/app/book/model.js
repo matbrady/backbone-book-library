@@ -7,12 +7,14 @@ define('book/model', [
 
 	var Book = Backbone.Model.extend({
 		defaults: {
-			coverImage: 'img/placeholder.png',
+			coverImage: 'http://placehold.it/80x105.jpg', // static: 'img/placeholder.png'
 			title: 'No Title',
 			author: 'Unknown',
 			releaseDate: 'Unknown',
-			keywords: 'None'
+			keywords: ''
 		}
 	});
+
+	return Book;
 
 });

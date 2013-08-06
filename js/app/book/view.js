@@ -1,10 +1,21 @@
 // Book View
 
-define('book/view', ['jquery', 'backbone', 'underscore'], function($, Backbone, _) {
+define('book/view', ['jquery', 'backbone', 'underscore', 'text!book/template.html'], function($, Backbone, _, bookTemplate) {
 	
 	var BookView = Backbone.View.extend({
 
-		el: 'div'
+		tagName: 'div',
+
+		className: 'bookContainer',
+		
+		template: _.template( bookTemplate ),
+
+		render: function() {
+			// this.el is what we defined in tagName. use $el to get access to jQuery html() function
+			this.$el.html( this.template( this.model.toJSON() ) );
+
+			return this;
+		}
 
 	});
 
