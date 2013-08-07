@@ -90,6 +90,10 @@
           mods.push('app');
         }
 
+        if ( detection.has('#upload') ) {
+          mods.push('upload');
+        }
+
         require(mods);
     }
 

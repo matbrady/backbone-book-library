@@ -3,13 +3,20 @@
 define('library/collection', [
 	'jquery',
 	'backbone',
+	'localstorage',
 	'underscore',
 	'book/model'	
-], function($, Backbone, _, BookModel) {
+], function($, Backbone, localStorage, _, BookModel) {
 	
 	var LibraryCollection = Backbone.Collection.extend({
 
-		model: BookModel
+		model: BookModel,
+
+		localStorage: new Backbone.LocalStorage('Backbone-Library'),
+
+		loadDummyData: function() {
+			
+		}
 		
 	});
 

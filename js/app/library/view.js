@@ -1,6 +1,6 @@
 // Library View
 
-define('library/view', ['jquery', 'backbone', 'underscore', 'library/collection', 'book/model', 'book/view'], function($, Backbone, _, LibCollection, BookModel, BookView) {
+define('library/view', ['jquery', 'backbone', 'underscore', 'library/collection', 'book/view'], function($, Backbone, _, LibCollection, BookView) {
 
 	var LibraryView = Backbone.View.extend({
 
@@ -9,25 +9,33 @@ define('library/view', ['jquery', 'backbone', 'underscore', 'library/collection'
 		formData: {}, // Object populated by input values used to build a new Book Model
 
 		events: {
-			'click #add': 'addBook'
+			'click #add': 'addBook',
+			'drop #upload': 'fileSelectHandler',
+			'dragover #upload': 'fileDragHover',
+			'dragleave #upload': 'fileDragHover'
 		},
 
 
 		initialize: function( initialBooks ) {
+			var self = this;
+
 			this.$fields = $('#addBook input');
 			this.$errors = this.$('.errors');
+			this.$upload = this.$('#upload');
 
-			this.collection = new LibCollection( initialBooks );		// Create a new Collection from static fixture
 			this.render();
 
 			// Listeners
 			this.listenTo( this.collection, 'add', this.renderBook );
+			this.listenTo( this.collection, 'reset', this.renderAll );
 		},
 
 
 		// render library by rendering each book in its collection
 		render: function() {
+
 			this.collection.each(function(item){
+				console.log('from render');
 				this.renderBook( item );
 			}, this);
 		},
@@ -44,13 +52,18 @@ define('library/view', ['jquery', 'backbone', 'underscore', 'library/collection'
 		},
 
 
+		renderAll: function() {
+			console.log('WE SHALL RENDER EVERYTHING');
+		},
+
+
 		addBook: function( evt ) {
 			evt.preventDefault();
 
 			this.validateForm();
 
 			if ( _.isEmpty(this.errors) ) {
-				this.collection.add( new BookModel( this.formData ) );
+				this.collection.create( this.formData );
 				this.$fields.val(''); // clear the form values once the book has been added
 				this.$errors.empty(); // clear all the errors
 			}
@@ -100,10 +113,81 @@ define('library/view', ['jquery', 'backbone', 'underscore', 'library/collection'
 			_.each( this.errors, function( error ) {
 				this.$errors.append( $('<p>').text( error ) );
 			}, this);
+		},
 
 
+		// file selection
+		fileSelectHandler: function(e) {
 
+			console.log( e.target.files, e.dataTransfer.files  );
+
+			// cancel event and hover styling
+			this.fileDragHover(e);
+
+			// fetch FileList object
+			var files = e.target.files || e.dataTransfer.files;
+
+			// process all File objects
+			for (var i = 0, f; f = files[i]; i++) {
+				this.parseFile(f);
+			}
+
+		},
+
+
+		// file drag hover
+		fileDragHover: function(e) {
+			e.stopPropagation();
+			e.preventDefault();
+			// e.target.className = (e.type == "dragover" ? "hover" : "");
+		},
+
+
+		// output file information
+		parseFile: function(file) {
+
+			console.log( file );
+
+			// Output(
+			// 	"<p>File information: <strong>" + file.name +
+			// 	"</strong> type: <strong>" + file.type +
+			// 	"</strong> size: <strong>" + file.size +
+			// 	"</strong> bytes</p>"
+			// );
+
+			// display an image
+			if (file.type.indexOf("image") == 0) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					// Output(
+					// 	"<p><strong>" + file.name + ":</strong><br />" +
+					// 	'<img src="' + e.target.result + '" /></p>'
+					// );
+					$('body').append('<img src="' + e.target.result + '" /></p>');
+				}
+				reader.readAsDataURL(file);
+			}
+
+			// // display text
+			// if (file.type.indexOf("text") == 0) {
+			// 	var reader = new FileReader();
+			// 	reader.onload = function(e) {
+			// 		Output(
+			// 			"<p><strong>" + file.name + ":</strong></p><pre>" +
+			// 			e.target.result.replace(/</g, "&lt;").replace(/>/g, "&gt;") +
+			// 			"</pre>"
+			// 		);
+			// 	}
+			// 	reader.readAsText(file);
+			// }
+
+		},
+
+		renderUpload: function() {
+			console.log('loading preview');
 		}
+
+
 
 	});
 

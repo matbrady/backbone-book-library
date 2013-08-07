@@ -17,13 +17,6 @@ define('book/model', [
 
 		validate: function( attr ) {
 
-			console.log(attr);
-
-			if ( attr.author.length ) {
-				console.log('auhtor');
-				return 'fail';
-			}
-
 		},
 
 
