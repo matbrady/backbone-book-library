@@ -11,7 +11,27 @@ define('book/model', [
 			title: 'No Title',
 			author: 'Unknown',
 			releaseDate: 'Unknown',
-			keywords: ''
+			keywords: 'None'
+		},
+
+
+		validate: function( attr ) {
+
+			console.log(attr);
+
+			if ( attr.author.length ) {
+				console.log('auhtor');
+				return 'fail';
+			}
+
+		},
+
+
+		initialize: function() {
+
+			this.on('invalid', function(model, error){
+				console.log( error );
+			});
 		}
 	});
 

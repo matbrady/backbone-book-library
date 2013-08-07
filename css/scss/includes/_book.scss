@@ -1,0 +1,25 @@
+// Book
+
+.book-contanier {
+
+	@include clearfix;
+	
+	.cover {
+		float: left;
+		margin-right: 15px;
+	}
+
+	ul {
+		list-style: none;
+	}
+
+	.title {
+		@include font-size(18);
+
+		font-weight: bold;
+	}
+	
+	.author {}
+	.releaseDate {}
+	.keywords {}
+}

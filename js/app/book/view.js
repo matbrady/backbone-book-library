@@ -6,7 +6,7 @@ define('book/view', ['jquery', 'backbone', 'underscore', 'text!book/template.htm
 
 		tagName: 'div',
 
-		className: 'bookContainer',
+		className: 'book-contanier',
 		
 		template: _.template( bookTemplate ),
 

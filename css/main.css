@@ -4796,3 +4796,29 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   margin: 40px auto;
   padding: 19px;
 }
+#addBook .form-control.error {
+  border: solid 1px #ff6666;
+}
+
+.book-contanier {
+  *zoom: 1;
+}
+.book-contanier:before, .book-contanier:after {
+  content: " ";
+  display: table;
+}
+.book-contanier:after {
+  clear: both;
+}
+.book-contanier .cover {
+  float: left;
+  margin-right: 15px;
+}
+.book-contanier ul {
+  list-style: none;
+}
+.book-contanier .title {
+  font-size: 18px;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
