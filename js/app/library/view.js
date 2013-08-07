@@ -17,9 +17,10 @@ define('library/view', ['jquery', 'backbone', 'underscore', 'library/collection'
 			this.$fields = $('#addBook input');
 			this.$errors = this.$('.errors');
 
-			this.collection = new LibCollection( initialBooks );
+			this.collection = new LibCollection( initialBooks );		// Create a new Collection from static fixture
 			this.render();
 
+			// Listeners
 			this.listenTo( this.collection, 'add', this.renderBook );
 		},
 
