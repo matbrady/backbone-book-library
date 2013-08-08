@@ -13,6 +13,9 @@ define('library/view', [
 
 		el: '#library',
 		errors: [],
+		classes: {
+			error: 'has-error'
+		},
 		formData: {}, // Object populated by input values used to build a new Book Model
 
 		events: {
@@ -91,7 +94,7 @@ define('library/view', [
 
 
 					this.formData[ el.id ] = $input.val();		// Add value to formData
-					$input.removeClass('error');		// remove `error` class
+					$input.parent().removeClass( this.classes.error );		// remove `error` class
 				}
 
 				// else if ( $input.attr('id') === 'coverImage' && $input.val() === '' ) {
@@ -101,7 +104,7 @@ define('library/view', [
 
 				// No value and field is required
 				else if ( $input.attr('required') && $input.val() === '' ) {
-					$input.addClass('error');
+					$input.parent().addClass( this.classes.error );
 
 					switch ( el.id ) {
 						case 'coverImage':
