@@ -4799,6 +4799,12 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 #addBook .form-control.error {
   border: solid 1px #ff6666;
 }
+#addBook #upload {
+  border: dashed 2px #999;
+}
+#addBook .preview-image {
+  max-width: 200px;
+}
 
 .book-contanier {
   *zoom: 1;

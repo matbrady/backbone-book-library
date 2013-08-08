@@ -12,11 +12,7 @@ define('library/collection', [
 
 		model: BookModel,
 
-		localStorage: new Backbone.LocalStorage('Backbone-Library'),
-
-		loadDummyData: function() {
-			
-		}
+		localStorage: new Backbone.LocalStorage('Backbone-Library')
 		
 	});
 

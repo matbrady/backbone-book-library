@@ -91,7 +91,7 @@
         }
 
         if ( detection.has('#upload') ) {
-          mods.push('upload');
+          // mods.push('upload');
         }
 
         require(mods);

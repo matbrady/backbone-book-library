@@ -9,9 +9,16 @@
 
 	.form-control {
 
-
 		&.error {
 			border: solid 1px tint(red, 40%);
 		}
+	}
+
+	#upload {
+		border: dashed 2px #999;
+	}
+
+	.preview-image {
+		max-width: 200px;
 	}
 }

@@ -10,9 +10,9 @@ define('library/view', ['jquery', 'backbone', 'underscore', 'library/collection'
 
 		events: {
 			'click #add': 'addBook',
-			'drop #upload': 'fileSelectHandler',
-			'dragover #upload': 'fileDragHover',
-			'dragleave #upload': 'fileDragHover'
+			'drop #upload': '_dropEvent',
+			'dragover #upload': '_dragOverEvent',
+			'dragleave #upload': '_dragOverEvent'
 		},
 
 
@@ -28,6 +28,29 @@ define('library/view', ['jquery', 'backbone', 'underscore', 'library/collection'
 			// Listeners
 			this.listenTo( this.collection, 'add', this.renderBook );
 			this.listenTo( this.collection, 'reset', this.renderAll );
+		},
+
+		_dragOverEvent: function(e) {
+			e.preventDefault()
+			e.stopPropagation()
+		},
+
+
+		_dropEvent: function (e) {
+			
+			e.preventDefault()
+			e.stopPropagation()
+	 
+			if (e.originalEvent) e = e.originalEvent;
+
+			// fetch FileList object
+			var files = e.target.files || e.dataTransfer.files;
+
+			// process all File objects
+			for (var i = 0, f; f = files[i]; i++) {
+				this.parseFile(f);
+			}
+
 		},
 
 
@@ -116,35 +139,10 @@ define('library/view', ['jquery', 'backbone', 'underscore', 'library/collection'
 		},
 
 
-		// file selection
-		fileSelectHandler: function(e) {
-
-			console.log( e.target.files, e.dataTransfer.files  );
-
-			// cancel event and hover styling
-			this.fileDragHover(e);
-
-			// fetch FileList object
-			var files = e.target.files || e.dataTransfer.files;
-
-			// process all File objects
-			for (var i = 0, f; f = files[i]; i++) {
-				this.parseFile(f);
-			}
-
-		},
-
-
-		// file drag hover
-		fileDragHover: function(e) {
-			e.stopPropagation();
-			e.preventDefault();
-			// e.target.className = (e.type == "dragover" ? "hover" : "");
-		},
-
-
 		// output file information
 		parseFile: function(file) {
+
+			var _this = this;
 
 			console.log( file );
 
@@ -163,7 +161,8 @@ define('library/view', ['jquery', 'backbone', 'underscore', 'library/collection'
 					// 	"<p><strong>" + file.name + ":</strong><br />" +
 					// 	'<img src="' + e.target.result + '" /></p>'
 					// );
-					$('body').append('<img src="' + e.target.result + '" /></p>');
+console.log( _this );
+					_this.$upload.html('<img src="' + e.target.result + '" class="preview-image" />');
 				}
 				reader.readAsDataURL(file);
 			}
