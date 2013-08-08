@@ -11,7 +11,7 @@ define('library/view', [
 
 	var LibraryView = Backbone.View.extend({
 
-		el: '#books',
+		el: '#library',
 		errors: [],
 		formData: {}, // Object populated by input values used to build a new Book Model
 
@@ -25,6 +25,7 @@ define('library/view', [
 
 			this.$fields = $('#addBook input');
 			this.$errors = this.$('.errors');
+			this.$books = this.$('#books');
 			this.uploadView = new FileUploadView({el: this.$('#fileUpload')});
 
 			this.render();
@@ -51,7 +52,7 @@ define('library/view', [
 				model: item
 			});
 
-			this.$el.append( bookView.render().el );
+			this.$books.append( bookView.render().el );
 		},
 
 
@@ -87,7 +88,6 @@ define('library/view', [
 
 			_.each( this.$fields, function( el ) {
 				var $input = $(el);
-				console.log( $input.attr('id'), $input.val() );
 
 				// Check if it has a value - YES
 				if ( $input.val().trim() != '' && $input.attr('id') !== 'fileSelect' ) {

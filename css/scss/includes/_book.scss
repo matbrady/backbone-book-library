@@ -1,9 +1,14 @@
 // Book
 
-.book-contanier {
+#books {
+	float: left;
+}
 
-	@include clearfix;
-	
+.book-contanier {
+	@include clearfix; 
+
+	margin: 15px 0 0;
+
 	.cover {
 		float: left;
 		margin-right: 15px;
@@ -14,8 +19,14 @@
 		}
 	}
 
+	.container {
+		float: left;
+	}
+
 	ul {
 		list-style: none;
+		margin: 0;
+		padding: 0;
 	}
 
 	.title {
@@ -27,4 +38,8 @@
 	.author {}
 	.releaseDate {}
 	.keywords {}
+
+	&:first-child {
+		margin-top: 0;
+	}
 }
