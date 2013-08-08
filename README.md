@@ -29,3 +29,8 @@ then in a new Terminal window, start the node express server with:
 		grunt express
 
 Your application should now be served at [localhost:8080](http://localhost:8080)
+
+
+MongoDB Shell
+
+A Quick Reference to shell commands for reviewing or manipulating a database can be found here [Shell Quick Reference](http://docs.mongodb.org/manual/reference/mongo-shell/)
