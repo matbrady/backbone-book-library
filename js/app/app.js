@@ -10,10 +10,10 @@ define('app', [
 
 	window.app = App;
 
-	app.LibraryCollection = new LibCollection();
+	app.LibraryCollection = new LibCollection( );
 
 	app.LibraryView = new LibView({ collection: app.LibraryCollection });
 
-	// app.LibraryCollection.fetch();
+	app.LibraryCollection.fetch();
 
 });

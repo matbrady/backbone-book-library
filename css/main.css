@@ -4799,11 +4799,22 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 #addBook .form-control.error {
   border: solid 1px #ff6666;
 }
-#addBook #upload {
-  border: dashed 2px #999;
-}
 #addBook .preview-image {
   max-width: 200px;
+}
+
+.fileDrop {
+  border: dashed 2px #999;
+}
+.fileDrop .preview-image {
+  max-height: 105px;
+  max-width: 80px;
+}
+.fileDrop.hover {
+  box-shadow: inset 0 0 10px #999;
+}
+.fileDrop.filled {
+  border: solid 2px #ddd;
 }
 
 .book-contanier {
@@ -4819,6 +4830,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .book-contanier .cover {
   float: left;
   margin-right: 15px;
+}
+.book-contanier .cover img {
+  max-height: 105px;
+  max-width: 80px;
 }
 .book-contanier ul {
   list-style: none;
