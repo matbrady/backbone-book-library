@@ -5,9 +5,10 @@
 }
 
 .book-contanier {
-	@include clearfix; 
+	@include clearfix;      
 
 	margin: 15px 0 0;
+	filter: alpha(opacity=50);
 
 	.cover {
 		float: left;

@@ -6,7 +6,7 @@ module.exports = function(grunt) {
 
 		watch: {
 			sass: {
-				files: '**/*.scss',
+				files: 'css/**/*.scss',
 				tasks: ['sass'],
 				options: {}
 			},
@@ -20,9 +20,9 @@ module.exports = function(grunt) {
 
 		sass: {
 			dist: {
-				options: {
-					style: 'expanded'
-				},
+				// options: {
+				// 	style: 'expanded'
+				// },
 
 				files: {
 					'css/main.css': 'css/main.scss'
@@ -52,6 +52,7 @@ module.exports = function(grunt) {
 
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-sass');
+	// grunt.loadNpmTasks('grunt-sass');
 	grunt.loadNpmTasks('grunt-contrib-coffee');
 
 	grunt.registerTask('default', function() {

@@ -63,10 +63,7 @@ define('library/view', [
 
 		addBook: function( evt ) {
 			evt.preventDefault();
-
 			this.validateForm();
-
-			console.log( this.formData );
 
 			if ( _.isEmpty(this.errors) ) {
 				this.collection.create( this.formData );
