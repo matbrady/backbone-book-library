@@ -6,13 +6,13 @@ module.exports = function(grunt) {
 
 		watch: {
 			sass: {
-				files: 'css/**/*.scss',
+				files: 'public/css/**/*.scss',
 				tasks: ['sass'],
 				options: {}
 			},
 
 			coffee: {
-				files: '**/*.coffee',
+				files: 'public/**/*.coffee',
 				tasks: ['coffee'],
 				options: {}
 			}
@@ -25,7 +25,7 @@ module.exports = function(grunt) {
 				// },
 
 				files: {
-					'css/main.css': 'css/main.scss'
+					'public/css/main.css': 'public/css/main.scss'
 				}
 			}
 		},
@@ -40,12 +40,24 @@ module.exports = function(grunt) {
 		    	{
 			      expand: true,
 			      cwd: "coffee",
-			      src: ["**/*.coffee"],
+			      src: ["public/**/*.coffee"],
 			      dest: ".temp/js",
 			      ext: ".js"
 		    	}
 		    ]
 		  }
+		},
+
+		express: {
+			options: {
+      // Override defaults here
+	      background: false
+	    },
+	    dev: {
+        options: {
+          script: 'server.js'
+        }
+      },
 		}
 
 	});
@@ -54,6 +66,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-sass');
 	// grunt.loadNpmTasks('grunt-sass');
 	grunt.loadNpmTasks('grunt-contrib-coffee');
+	grunt.loadNpmTasks('grunt-express-server');
 
 	grunt.registerTask('default', function() {
 		var lines = [
@@ -69,7 +82,5 @@ module.exports = function(grunt) {
 		for (var i = 0; i < lines.length; i++) {
 			grunt.log.writeln(lines[i]);
 		};
-
 	});
-
 };
