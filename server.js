@@ -1,12 +1,14 @@
 // Module dependencies.
 var application_root = __dirname,
-  express = require( 'express' ), //Web framework
-  path = require( 'path' ), //Utilities for dealing with file paths
-  mongoose = require( 'mongoose',
-  _ = require( 'underscore' )); //MongoDB integration
+    express   = require('express'), //Web framework
+    path      = require('path'), //Utilities for dealing with file paths
+    mongoose  = require('mongoose'),
+    _         = require('underscore'); //MongoDB integration
 
 //Create server
 var app = express();
+
+console.log(  app.settings.env );
 
 //parses request body and populates request.body
 app.use( express.bodyParser() );
@@ -43,6 +45,8 @@ app.get( '/api/books', function( request, response) {
     }
   });
 });
+
+
 
 // Insert a new book
 app.post( '/api/books', function( request, response) {
