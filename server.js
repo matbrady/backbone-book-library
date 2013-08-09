@@ -8,23 +8,20 @@ var application_root = __dirname,
 //Create server
 var app = express();
 
-// Configure server
-app.configure( function() {
-  //parses request body and populates request.body
-  app.use( express.bodyParser() );
+//parses request body and populates request.body
+app.use( express.bodyParser() );
 
-  //checks request.body for HTTP method overrides
-  app.use( express.methodOverride() );
+//checks request.body for HTTP method overrides
+app.use( express.methodOverride() );
 
-  //perform route lookup based on url and HTTP method
-  app.use( app.router );
+//perform route lookup based on url and HTTP method
+app.use( app.router );
 
-  //Where to serve static content
-  app.use( express.static( path.join( application_root, 'public') ) );
+//Where to serve static content
+app.use( express.static( path.join( application_root, 'public') ) );
 
-  //Show all errors in development
-  app.use( express.errorHandler({ dumpExceptions: true, showStack: true }));
-});
+//Show all errors in development
+app.use( express.errorHandler({ dumpExceptions: true, showStack: true }));
 
 
 //Start server
@@ -32,6 +29,7 @@ var port = process.env.PORT || 8080;
 app.listen( port, function() {
   console.log( 'Express server listening on port %d in %s mode', port, app.settings.env );
 });
+
 
 
 // Routes
@@ -77,8 +75,17 @@ app.post( '/api/books', function( request, response) {
 });
 
 
+
+var uristring = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/library_database';
 // // Connect to database
-// mongoose.connect( 'mongodb://localhost/library_database' );
+// mongoose.connect( uristring, function( err, res ) {
+  // if (err) {
+  //   console.log( 'Error connecting to:' + uristring + '. ' + err );
+  // }
+  // else {
+  //   console.log('Successfully connected to: ' + uristring );
+  // }
+//});
 
 // // Schemas
 // var Book = new mongoose.Schema({

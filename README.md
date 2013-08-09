@@ -34,6 +34,23 @@ then in a new Terminal window, start the node express server with:
 Your application should now be served at [localhost:8080](http://localhost:8080)
 
 
-MongoDB Shell
+### Deployment
+
+**Add the Heroku app to Git**
+
+		heroku git:remote -a APP_NAME
+		-or-
+		git remote add heroku git@heroku.com:APP_NAME.git
+
+**Deploying**
+
+		git push heroku master
+
+if you want to push a specfic local branch run:
+
+		git push heroku BRANCH_NAME:master
+
+
+### MongoDB Shell
 
 A Quick Reference to shell commands for reviewing or manipulating a database can be found here [Shell Quick Reference](http://docs.mongodb.org/manual/reference/mongo-shell/)
