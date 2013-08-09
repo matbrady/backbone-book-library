@@ -16,7 +16,7 @@ Grunt adds conviences for processing the project sass and coffeescript. Grunt co
 		grunt watch:coffee		// watches for changes to .coffee files and compiles
 
 
-Start the App
+### Start the App
 
 First open a Terminal tab and run:
 
@@ -27,6 +27,9 @@ this will watch for `.scss` file changes and compile a new style sheet
 then in a new Terminal window, start the node express server with:
 
 		grunt express
+		// or
+		foreman start
+		// which just runs the Procfile that executes `web: node server.js` 
 
 Your application should now be served at [localhost:8080](http://localhost:8080)
 
