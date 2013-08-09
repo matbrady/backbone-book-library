@@ -8,7 +8,7 @@ var application_root = __dirname,
 //Create server
 var app = express();
 
-console.log(  app.settings.env );
+console.log( app.settings.env );
 
 //parses request body and populates request.body
 app.use( express.bodyParser() );
@@ -47,6 +47,15 @@ app.get( '/api/books', function( request, response) {
 });
 
 
+// Get a single book by id
+app.get('/api/books/:id', function(request, response) {
+  return BookModel.findById( request.params.id, function(err, book) {
+    return !err ? response.send( book ) : console.log( err );
+  });
+});
+
+
+
 
 // Insert a new book
 app.post( '/api/books', function( request, response) {
@@ -82,21 +91,21 @@ app.post( '/api/books', function( request, response) {
 
 var uristring = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/library_database';
 // // Connect to database
-// mongoose.connect( uristring, function( err, res ) {
-  // if (err) {
-  //   console.log( 'Error connecting to:' + uristring + '. ' + err );
-  // }
-  // else {
-  //   console.log('Successfully connected to: ' + uristring );
-  // }
-//});
+mongoose.connect( uristring, function( err, res ) {
+  if (err) {
+    console.log( 'Error connecting to:' + uristring + '. ' + err );
+  }
+  else {
+    console.log('Successfully connected to: ' + uristring );
+  }
+});
 
-// // Schemas
-// var Book = new mongoose.Schema({
-//   title: String,
-//   author: String,
-//   releaseDate: Date
-// });
+// Schemas
+var Book = new mongoose.Schema({
+  title: String,
+  author: String,
+  releaseDate: Date
+});
 
-// // Models
-// var BookModel = mongoose.model( 'Book', Book );
+// Models
+var BookModel = mongoose.model( 'Book', Book );
