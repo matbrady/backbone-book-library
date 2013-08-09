@@ -79,15 +79,15 @@ app.post( '/api/books', function( request, response) {
 });
 
 
-// Connect to database
-mongoose.connect( 'mongodb://localhost/library_database' );
+// // Connect to database
+// mongoose.connect( 'mongodb://localhost/library_database' );
 
-// Schemas
-var Book = new mongoose.Schema({
-  title: String,
-  author: String,
-  releaseDate: Date
-});
+// // Schemas
+// var Book = new mongoose.Schema({
+//   title: String,
+//   author: String,
+//   releaseDate: Date
+// });
 
-// Models
-var BookModel = mongoose.model( 'Book', Book );
+// // Models
+// var BookModel = mongoose.model( 'Book', Book );
