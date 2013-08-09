@@ -2,7 +2,7 @@
 var application_root = __dirname,
   express = require( 'express' ), //Web framework
   path = require( 'path' ), //Utilities for dealing with file paths
-  mongoose = require( 'mongoose' ,
+  mongoose = require( 'mongoose',
   _ = require( 'underscore' )); //MongoDB integration
 
 //Create server
@@ -28,12 +28,10 @@ app.configure( function() {
 
 
 //Start server
-var port = 8080;
+var port = process.env.PORT || 8080;
 app.listen( port, function() {
   console.log( 'Express server listening on port %d in %s mode', port, app.settings.env );
 });
-
-
 
 
 // Routes
